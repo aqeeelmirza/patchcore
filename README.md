@@ -6,11 +6,17 @@ This repository adapts the original PatchCore implementation to provide a reprod
 
 ## Download the Models
 
-**[Download models from OneDrive](ONEDRIVE_DOWNLOAD_LINK)**
+**[Download pretrained models from OneDrive (967 MB)](https://univr-my.sharepoint.com/:u:/g/personal/muhammad_aqeel_univr_it/IQCvi-G3A_B7TJq_QZmvWiiIAVDLLSmYwefUNGqJXCVM1h4?e=DU3l2r)**
 
-Place the extracted `models` folder in the repository root.
+Download `patchcore_mvtec_models.tar.gz`, move it into the cloned repository, and extract it:
 
-Each category folder—for example, `models/mvtec_bottle/`—must contain:
+```bash
+tar -xzf patchcore_mvtec_models.tar.gz
+```
+
+This creates the `models/` folder containing all 15 category models.
+
+Each category folder—for example, `models/mvtec_bottle/`—contains:
 
 - `nnscorer_search_index.faiss`: the trained feature memory bank.
 - `patchcore_params.pkl`: the model configuration.
@@ -42,7 +48,7 @@ python -m pip install -r requirements.txt timm
 
 The models were verified using Python 3.10, PyTorch 2.7.1, torchvision 0.22.1, and CPU FAISS.
 
-The examples below use **GPU 0 for feature extraction** and **CPU FAISS for nearest-neighbor search**. They do not require GPU FAISS.
+The examples below run in **Bash** and use **GPU 0 for feature extraction** and **CPU FAISS for nearest-neighbor search**. They do not require GPU FAISS.
 
 ## Prepare MVTec AD
 
@@ -127,12 +133,12 @@ For workflows using models such as SmolVLM, provide the input image and predicte
 
 The current exporter produces combined evaluation figures. It does not export separate heatmap-only or overlay images.
 
-The evaluator normalizes anomaly maps across the evaluated test images. Therefore:
+The evaluator normalizes anomaly maps across the evaluated test images. The plotting function also automatically scales each displayed map. Therefore:
 
 - Color intensity represents relative anomaly scores.
 - Colors are not calibrated defect probabilities.
 - A heatmap alone does not provide a thresholded normal/anomalous decision.
-- Visualization intensity can change when evaluating a different set of images.
+- Colors in the exported figures should not be used to compare absolute anomaly severity across images.
 
 ## Evaluate All 15 Categories
 
@@ -187,7 +193,7 @@ The following values are arithmetic means across categories:
 | Pixel-level localization: all test images | 98.11% |
 | Pixel-level localization: anomalous images only | 97.36% |
 
-Per-category results are provided in [`verified_results.csv`](verified_results.csv).
+Per-category results are provided in [verified_results.csv](verified_results.csv).
 
 Small numerical differences may occur across software and hardware environments.
 
@@ -229,10 +235,10 @@ python -m pip install timm
 
 ### PatchCore Cannot Be Imported
 
-Run commands from the repository root with:
+Run commands from the repository root with `PYTHONPATH` pointing to `src`. To check the import:
 
 ```bash
-PYTHONPATH="$PWD/src" python ...
+PYTHONPATH="$PWD/src" python -c "import patchcore; print(patchcore.__file__)"
 ```
 
 ### Missing Backbone Weights
@@ -245,12 +251,10 @@ The code uses the older `pretrained` argument. These warnings did not prevent lo
 
 ## Acknowledgments and License
 
-This repository is based on the
-[original PatchCore implementation](https://github.com/amazon-science/patchcore-inspection)
-and the paper *Towards Total Recall in Industrial Anomaly Detection*.
+This repository is based on the [original PatchCore implementation](https://github.com/amazon-science/patchcore-inspection) and the paper *Towards Total Recall in Industrial Anomaly Detection*.
 
 PatchCore is the original authors’ method. This repository provides an adapted workflow and saved models evaluated on MVTec AD.
 
-The upstream license and applicable notices must be retained when redistributing the code. See the included license file for its terms.
+The upstream license and applicable notices must be retained when redistributing the code. See [LICENSE](LICENSE) and [NOTICE](NOTICE) for terms and attribution.
 
 MVTec AD is distributed separately under its own dataset terms.
