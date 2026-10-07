@@ -6,7 +6,7 @@ This repository adapts the original PatchCore implementation to provide a reprod
 
 ## Download the Models
 
-**[Download pretrained models from OneDrive (967 MB)](https://univr-my.sharepoint.com/:u:/g/personal/muhammad_aqeel_univr_it/IQCvi-G3A_B7TJq_QZmvWiiIAVDLLSmYwefUNGqJXCVM1h4?e=DU3l2r)**
+**[Download pretrained models](https://univr-my.sharepoint.com/:u:/g/personal/muhammad_aqeel_univr_it/IQCvi-G3A_B7TJq_QZmvWiiIAVDLLSmYwefUNGqJXCVM1h4?e=DU3l2r)**
 
 Download `patchcore_mvtec_models.tar.gz`, move it into the cloned repository, and extract it:
 
