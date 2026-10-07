@@ -1,8 +1,8 @@
-models/
-outputs/
-results/
-data/
-datasets/
+/models/
+/outputs/
+/results/
+/data/
+/datasets/
 *.faiss
 *.pkl
 *.pth
@@ -14,3 +14,4 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 *.before_export_fix
+/bin/activate
